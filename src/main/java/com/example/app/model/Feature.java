@@ -1,21 +1,31 @@
 package com.example.app.model;
 
-import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "feature")
 public class Feature {
 
-  private @Id @GeneratedValue Long id;
+  @Id 
+  @GeneratedValue
+  private Long id;
+
+  @Column(name = "name")
   private String name;
-  private String email;
 
-  Feature() {}
+  @OneToMany(mappedBy = "feature")
+  private Set<UserFeature> userFeature;
 
-  Feature(String name)
+  public Feature() {}
+
+  public Feature(String name)
   {
     this.name = name;
   }
@@ -40,25 +50,8 @@ public class Feature {
     this.name = name;
   }
 
-  // @Override
-  // public boolean equals(Object o) {
-
-  //   if (this == o)
-  //     return true;
-  //   if (!(o instanceof Employee))
-  //     return false;
-  //   Employee employee = (Employee) o;
-  //   return Objects.equals(this.id, employee.id) && Objects.equals(this.name, employee.name)
-  //       && Objects.equals(this.role, employee.role);
-  // }
-
-  // @Override
-  // public int hashCode() {
-  //   return Objects.hash(this.id, this.name, this.role);
-  // }
-
-  // @Override
-  // public String toString() {
-  //   return "Employee{" + "id=" + this.id + ", name='" + this.name + '\'' + ", role='" + this.role + '\'' + '}';
-  // }
+  @Override
+  public String toString() {
+    return "{" + "id=" + this.id + ", name='" + this.name + '\'' + '}';
+  }
 }

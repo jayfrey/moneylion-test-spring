@@ -1,31 +1,48 @@
 package com.example.app.model;
 
-import java.util.Objects;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EmbeddedId;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_feature")
 public class UserFeature {
 
-  @EmbeddedId
-  UserFeatureKey id;
+  @Id 
+  @GeneratedValue
+  private Long id;
 
   @ManyToOne
-  @MapsId("userId")
   @JoinColumn(name = "user_id")
-  User user;
+  private User user;
 
   @ManyToOne
-  @MapsId("featureId")
   @JoinColumn(name = "feature_id")
-  Feature feature;
+  private Feature feature;
 
-  boolean access;
+ 
+  @Column(name = "access")
+  private boolean access;
 
-  UserFeature() {}
+  public UserFeature() {}
 
+  public boolean getAccess()
+  {
+    return this.access;
+  }
+
+  public void setAccess(boolean access)
+  {
+    this.access = access;
+  }
+
+  @Override
+  public String toString() 
+  {
+     return "{" + "id=" + this.id + ", user_id='" + user.getEmail() + '\'' + ", feature_id='" + feature.getName() + '\'' + ", access='" + this.access + '\'' + '}';
+  }
 }
