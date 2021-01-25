@@ -6,7 +6,7 @@ import com.example.app.model.UserFeature;
 
 public interface UserFeatureService {
 
-	public UserFeature findByUserIdAndFeatureId(Map<String, String> params);
-	public void updateAccess(Map<String, String> params);
+	public UserFeature findByUserEmailAndFeatureName(Map<String, Object> params);
+	public void updateAccess(Map<String, Object> params);
 	
 }

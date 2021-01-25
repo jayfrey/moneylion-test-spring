@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "feature")
@@ -17,9 +18,11 @@ public class Feature {
   @GeneratedValue
   private Long id;
 
+  @NotNull
   @Column(name = "name")
   private String name;
 
+  @NotNull
   @OneToMany(mappedBy = "feature")
   private Set<UserFeature> userFeature;
 
