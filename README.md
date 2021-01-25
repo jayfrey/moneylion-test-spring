@@ -16,5 +16,14 @@ Basic
 * **GET /feature/all**
 * **GET /user/all**
 
+### Configuration
+```sh
+Domain: localhost:8080
+
+H2 User Credential
+Username: root
+Password: 1234
+```
+
 ### Test with Postman
 Import the collection [here](https://github.com/jayfrey/moneylion-test/blob/dev/Take-Home-Test.postman_collection.json)
