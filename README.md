@@ -20,7 +20,7 @@ Basic
 ```sh
 Domain: localhost:8080
 
-H2 User Credential
+H2 Credential
 Username: root
 Password: 1234
 ```
