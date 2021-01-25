@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user_feature")
@@ -24,9 +25,9 @@ public class UserFeature {
   @JoinColumn(name = "feature_id")
   private Feature feature;
 
- 
+  @NotNull
   @Column(name = "access")
-  private boolean access;
+  private Boolean access;
 
   public UserFeature() {}
 
@@ -35,7 +36,7 @@ public class UserFeature {
     return this.access;
   }
 
-  public void setAccess(boolean access)
+  public void setAccess(Boolean access)
   {
     this.access = access;
   }
