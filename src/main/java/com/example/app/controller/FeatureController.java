@@ -24,7 +24,6 @@ import com.example.app.model.Request;
 import com.example.app.model.UserFeature;
 import com.example.app.service.FeatureService;
 import com.example.app.service.UserFeatureService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @Validated
@@ -53,20 +52,17 @@ public class FeatureController {
 			ResponseEntity<Object> response = ResponseEntity.status(HttpStatus.OK).body(data);
 			logger.info("Response: ", response);
 			return response;
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
 		}
 	}
 	
 	@PostMapping("/feature")
-	public ResponseEntity<Object> updateAccess(@Valid @RequestBody Request request) 
+	public ResponseEntity<Object> updateAccess(@Valid @RequestBody Request request)
 	{
 		logger.info("Request: " + request.toString());
 		try {
-			ObjectMapper oMapper = new ObjectMapper();
-			Map<String, Object> params = oMapper.convertValue(request, Map.class);
-			
-			userFeatureService.updateAccess(params);
+			userFeatureService.updateAccess(request.toMap(request));
 			logger.info("Update access successfully!");
 			ResponseEntity<Object> response = ResponseEntity.status(HttpStatus.OK).body("");
 			logger.info("Response: ", response);
