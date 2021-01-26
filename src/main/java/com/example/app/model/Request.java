@@ -1,8 +1,12 @@
 package com.example.app.model;
 
+import java.util.Map;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Request {
 
@@ -34,6 +38,12 @@ public class Request {
 		return this.enable;
 	}
 	
+	public Map<String, Object> toMap(Request request)
+	{
+		ObjectMapper oMapper = new ObjectMapper();
+		Map<String, Object> params = oMapper.convertValue(request, Map.class);
+		return params;
+	}
 	
 	@Override
 	public String toString() 
